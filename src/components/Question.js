@@ -9,10 +9,18 @@ const Question = () => {
     <div>
       <div className="question">{currentQuestion.question}</div>
       <div className="answers">
-        <Answer />
-        <Answer />
-        <Answer />
-        <Answer />
+        {quizState.answers.map((answer, index) => (
+          <Answer
+            key={index}
+            index={index}
+            answerText={answer}
+            correctAnswer={currentQuestion.correctAnswer}
+            currentAnswer={quizState.currentAnswer}
+            onSelectAnswer={(answerText) =>
+              dispatch({ type: "SELECT_ANSWER", payload: answerText })
+            }
+          />
+        ))}
       </div>
     </div>
   );
